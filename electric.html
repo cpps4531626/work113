@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    function spreadsheetsql_QueryResponse_1(res) {
+        spreadsheetsql_QueryResponse(res, "1");
+    }
+    window.spreadsheetsql_QueryResponse_1 = spreadsheetsql_QueryResponse_1;
+
+    async function spreadsheetsql_getDataFinish_1(head_response, response) {
+        text_create('1', 100, 30, 400, 100, '#ffffff', '#000000', 30, 1, (spreadsheetsql_getCell(1, 1, "1")), 999, true);
+
+    };
+    window.spreadsheetsql_getDataFinish_1 = spreadsheetsql_getDataFinish_1;
+
+    function spreadsheetsql_QueryResponse_2(res) {
+        spreadsheetsql_QueryResponse(res, "2");
+    }
+    window.spreadsheetsql_QueryResponse_2 = spreadsheetsql_QueryResponse_2;
+
+    async function spreadsheetsql_getDataFinish_2(head_response, response) {
+        text_create('2', 120, 30, 700, 100, '#ffffff', '#000000', 30, 1, (spreadsheetsql_getCell(1, 1, "2")), 999, true);
+
+    };
+    window.spreadsheetsql_getDataFinish_2 = spreadsheetsql_getDataFinish_2;
+
+
+    head_add_viewport(1, 1, 2, "yes");
+    span_create('1', 200, 0, 30, '電器', 999);
+    span_create('4', 200, 100, 30, '電燈', 999);
+    span_create('5', 200, 200, 30, '電扇', 999);
+    span_create('6', 200, 300, 30, '冷氣', 999);
+    span_create('2', 400, 0, 30, '目前使用時間', 999);
+    span_create('3', 700, 0, 30, '碳排放量(g_CO2e)', 999);
+    spreadsheetsql_settings('1ZW_b2LHUNwkLgjNMLa8QWBTn5kbAXwNDrofR6Vz2u-c', 'light_time', "1");
+    spreadsheetsql_executeSql('select D limit 1 offset 0', "1");
+    spreadsheetsql_settings('1ZW_b2LHUNwkLgjNMLa8QWBTn5kbAXwNDrofR6Vz2u-c', 'light_time', "2");
+    spreadsheetsql_executeSql('select E limit 1 offset 0', "2");
+};
+main();
+</script>
+</body></html>
