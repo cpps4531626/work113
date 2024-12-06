@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier_video.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    knnclassifier_video("none", "1", "1");
+    knnclassifier_startvideo_media(320, 240, "front", 0);
+    button_create('1', 140, 70, 0, 247, 1, '#ff0000', '分類1', 45, 999, true);
+    button_create('2', 140, 70, 0, 317, 1, '#ffff00', '分類2', 45, 999, true);
+    button_create('3', 140, 70, 0, 387, 1, '#33ff33', '分類3', 45, 999, true);
+    button_create('4', 140, 70, 0, 457, 1, '#33ffff', '分類4', 45, 999, true);
+    button_create('5', 140, 70, 0, 527, 1, '#3366ff', '分類5', 45, 999, true);
+    button_create('10', 140, 70, 1130, 250, 1, '#99ffff', '儲存', 45, 999, true);
+    button_create('11', 140, 70, 1130, 320, 1, '#33ffff', '辨識', 45, 999, true);
+    button_create('12', 140, 70, 1130, 390, 1, '#66cccc', '載入', 45, 999, true);
+    knnclassifier_class("1", '麥茶');
+    knnclassifier_class("2", '乖乖');
+    knnclassifier_class("3", '仙草蜜');
+    knnclassifier_class("4", '檸檬餅乾');
+    knnclassifier_class("5", '草莓餅乾');
+    async function gamebutton_10_onclick(event) {
+        knnclassifier_savemodel();
+    };
+    document.getElementById("gamebutton_10").addEventListener("click", gamebutton_10_onclick, true);
+    async function gamebutton_11_onclick(event) {
+        knnclassifier_detect();
+    };
+    document.getElementById("gamebutton_11").addEventListener("click", gamebutton_11_onclick, true);
+    async function gamebutton_12_onclick(event) {
+        knnclassifier_loadmodel();
+    };
+    document.getElementById("gamebutton_12").addEventListener("click", gamebutton_12_onclick, true);
+    async function gamebutton_1_onclick(event) {
+        knnclassifier_train("1");
+    };
+    document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+    async function gamebutton_2_onclick(event) {
+        knnclassifier_train("2");
+    };
+    document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+    async function gamebutton_3_onclick(event) {
+        knnclassifier_train("3");
+    };
+    document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
+    async function gamebutton_4_onclick(event) {
+        knnclassifier_train("4");
+    };
+    document.getElementById("gamebutton_4").addEventListener("click", gamebutton_4_onclick, true);
+    async function gamebutton_5_onclick(event) {
+        knnclassifier_train("5");
+    };
+    document.getElementById("gamebutton_5").addEventListener("click", gamebutton_5_onclick, true);
+    recognitionFinish = async function() {
+        text_create('1', 250, 93, 327, 100, '#ffffff', '#000000', 50, 1, (knnclassifier_proportion("class")), 999, true);
+        text_create('2', 250, 93, 584, 100, '#ffffff', '#000000', 45, 1, (date_get('1', "value")), 999, true);
+        spreadsheet_insert("insertrow2", String(text_get('1', "value")) + "|" + String(text_get('2', "value")), 0, 0, "", 'https://docs.google.com/spreadsheets/d/1HMHfthrrB83EVgC4SY881ox2_LdAR6ys8yYWEnpzzm8/edit?usp=sharing', 'in', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
+
+    };
+    date_create('1', 335, 270, '2100-12-31', '1900-01-01', '2024-12-31', 1, 1000, true);
+    span_create('1', 355, 15, 50, '物品名稱', 1000);
+    span_create('2', 610, 15, 50, '保存期限', 1000);
+    span_create('3', 150, 263, 25, '請輸入保存期限:', 1000);
+    text_create('3', 250, 95, 327, 0, '#ffff66', '#000000', 50, 1, '', 999, true);
+    text_create('4', 250, 95, 584, 0, '#ffff66', '#000000', 50, 1, '', 999, true);
+    text_create('5', 310, 64, 140, 247, '#ffff66', '#000000', 50, 1, '', 999, true);
+};
+main();
+</script>
+</body></html>
