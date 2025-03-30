@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    function spreadsheetsql_QueryResponse_(res) {
+        spreadsheetsql_QueryResponse(res, "");
+    }
+    window.spreadsheetsql_QueryResponse_ = spreadsheetsql_QueryResponse_;
+
+    async function spreadsheetsql_getDataFinish_(head_response, response) {
+        spreadsheetsql_getDataTable('123', 400, 20, 0, 20, true, "");
+
+    };
+    window.spreadsheetsql_getDataFinish_ = spreadsheetsql_getDataFinish_;
+
+
+    button_create('123', 130, 70, 300, 200, 1, '#33ccff', '查詢', 25, 999, true);
+    async function gamebutton_123_onclick(event) {
+        spreadsheetsql_settings('1y1xJ7rfsl2VeDtZKQ7xce5SpuA4CEji79825VLylL6U', 'second_work', "");
+        spreadsheetsql_executeSql('select D', "");
+        button_create('123', 130, 70, 150, 0, 1, '#33ccff', '查詢', 20, 999, false);
+        span_create('123456', 0, 0, 20, '', 999);
+        text_create('1', 80, 50, 50, 0, '#00cccc', '#000000', 17, 1, '', 999, false);
+    };
+    document.getElementById("gamebutton_123").addEventListener("click", gamebutton_123_onclick, true);
+};
+main();
+</script>
+</body></html>
