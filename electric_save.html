@@ -1,0 +1,231 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    function mqttBinarytobase64(input_array) {
+        const content = new Uint8Array(input_array);
+        return btoa(String.fromCharCode.apply(null, content));
+    }
+
+
+    function spreadsheetsql_QueryResponse_100(res) {
+        spreadsheetsql_QueryResponse(res, "100");
+    }
+    window.spreadsheetsql_QueryResponse_100 = spreadsheetsql_QueryResponse_100;
+
+    async function spreadsheetsql_getDataFinish_100(head_response, response) {
+        text_create('3', 60, 30, 40, 550, '#ffffcc', '#000000', 14, 1, (spreadsheetsql_getCell(1, 1, "100")), 999, true);
+
+    };
+    window.spreadsheetsql_getDataFinish_100 = spreadsheetsql_getDataFinish_100;
+
+    function spreadsheetsql_QueryResponse_200(res) {
+        spreadsheetsql_QueryResponse(res, "200");
+    }
+    window.spreadsheetsql_QueryResponse_200 = spreadsheetsql_QueryResponse_200;
+
+    async function spreadsheetsql_getDataFinish_200(head_response, response) {
+        text_create('2', 60, 30, 270, 550, '#ffffcc', '#000000', 14, 1, (spreadsheetsql_getCell(1, 1, "200")), 999, true);
+
+    };
+    window.spreadsheetsql_getDataFinish_200 = spreadsheetsql_getDataFinish_200;
+
+    function spreadsheetsql_QueryResponse_300(res) {
+        spreadsheetsql_QueryResponse(res, "300");
+    }
+    window.spreadsheetsql_QueryResponse_300 = spreadsheetsql_QueryResponse_300;
+
+    async function spreadsheetsql_getDataFinish_300(head_response, response) {
+        text_create('1', 60, 30, 480, 550, '#ffffcc', '#000000', 14, 1, (spreadsheetsql_getCell(1, 1, "300")), 999, true);
+
+    };
+    window.spreadsheetsql_getDataFinish_300 = spreadsheetsql_getDataFinish_300;
+
+
+    const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+    const options = {
+        username: '',
+        password: '',
+        keepalive: 60,
+        clientId: clientId,
+        protocolId: "MQTT",
+        protocolVersion: 4,
+        clean: true,
+        reconnectPeriod: 1000,
+        connectTimeout: 30 * 1000
+    }
+
+    var mqtt_client = mqtt.connect('wss://broker.mqttgo.io:8084/mqtt', options);
+    mqtt_client.on("connect", () => {
+        console.log("connected");
+        mqtt_client.subscribe('cpps/666');
+        mqtt_client.on("message", async function(topic, payload) {
+            if (topic == 'cpps/666') {
+                if ((payload) == 'openlight') {
+                    canvas_arc('3', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+                }
+                if ((payload) == 'closelight') {
+                    canvas_arc('3', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+                }
+                if ((payload) == 'openfan') {
+                    canvas_arc('2', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+                }
+                if ((payload) == 'closefan') {
+                    canvas_arc('2', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+                }
+                if ((payload) == 'opencoldair') {
+                    canvas_arc('1', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+                }
+                if ((payload) == 'closecoldair') {
+                    canvas_arc('1', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+                }
+            }
+        })
+    })
+
+    spreadsheetsql_settings('1QVyX7YniKd0wwASYGSRyvikvjfj6BximFyFDxyJKpOw', 'home_all', "100");
+    spreadsheetsql_executeSql('select H limit 1', "100");
+    spreadsheetsql_settings('1QVyX7YniKd0wwASYGSRyvikvjfj6BximFyFDxyJKpOw', 'home_all', "200");
+    spreadsheetsql_executeSql('select P  limit 1', "200");
+    spreadsheetsql_settings('1QVyX7YniKd0wwASYGSRyvikvjfj6BximFyFDxyJKpOw', 'home_all', "300");
+    spreadsheetsql_executeSql('select X  limit 1', "300");
+    span_create('1', 180, 30, 40, '[家庭設備節能儀表板]', 999);
+    span_create('4', 100, 250, 21, '客廳', 999);
+    span_create('5', 320, 250, 21, '主臥室', 999);
+    span_create('6', 555, 250, 21, '次臥室', 999);
+    span_create('7', 20, 500, 20, '今日電燈用電碳排放量', 999);
+    span_create('8', 230, 500, 20, '今日電扇用電碳排放量', 999);
+    span_create('9', 440, 500, 20, '今日冷氣用電碳排放量', 999);
+    span_create('10', 110, 560, 15, 'KgCO2e', 999);
+    span_create('11', 340, 560, 15, 'KgCO2e', 999);
+    span_create('12', 550, 560, 15, 'KgCO2e', 999);
+    div_create('1', 200, 150, 20, 300, "solid", 5, '#3366ff', '#ffffff', '#000000', 14, 1, '', 999, true);
+    div_create('2', 200, 150, 247, 300, "solid", 5, '#cc33cc', '#ffffff', '#000000', 14, 1, '', 999, true);
+    div_create('3', 200, 150, 470, 300, "solid", 5, '#ffcc00', '#ffffff', '#000000', 14, 1, '', 999, true);
+    canvas_create('1', 400, 400, 30, 320, 999);
+    canvas_arc('1', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    canvas_create('2', 400, 400, 30, 275, 999);
+    canvas_arc('2', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    // NO
+    canvas_create('3', 400, 400, 30, 230, 999);
+    canvas_arc('3', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    // NO
+    canvas_create('4', 400, 400, 260, 230, 999);
+    canvas_arc('4', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    // NO
+    canvas_create('5', 400, 400, 260, 275, 999);
+    canvas_arc('5', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    canvas_create('6', 400, 400, 260, 320, 999);
+    canvas_arc('6', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    canvas_create('7', 400, 400, 490, 320, 999);
+    canvas_arc('7', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    // NO
+    canvas_create('8', 400, 400, 490, 275, 999);
+    canvas_arc('8', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    // NO
+    canvas_create('9', 400, 400, 490, 230, 999);
+    canvas_arc('9', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    button_create('1', 60, 30, 80, 320, 1, null, '開燈', 12, 999, true);
+    button_create('2', 60, 30, 140, 320, 1, null, '關燈', 12, 999, true);
+    button_create('3', 60, 30, 310, 320, 1, null, '開燈', 12, 999, true);
+    button_create('4', 60, 30, 370, 320, 1, null, '關燈', 12, 999, true);
+    async function gamebutton_1_onclick(event) {
+        canvas_arc('3', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+        mqtt_client.publish('cpps/666', String('openlight1'));
+    };
+    document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+    async function gamebutton_2_onclick(event) {
+        canvas_arc('3', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+        mqtt_client.publish('cpps/666', String('closelight1'));
+    };
+    document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+    async function gamebutton_3_onclick(event) {
+        canvas_arc('4', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
+    async function gamebutton_4_onclick(event) {
+        canvas_arc('4', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_4").addEventListener("click", gamebutton_4_onclick, true);
+    button_create('5', 60, 30, 540, 320, 1, null, '開燈', 12, 999, true);
+    async function gamebutton_5_onclick(event) {
+        canvas_arc('9', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_5").addEventListener("click", gamebutton_5_onclick, true);
+    button_create('6', 60, 30, 600, 320, 1, null, '關燈', 12, 999, true);
+    async function gamebutton_6_onclick(event) {
+        canvas_arc('9', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_6").addEventListener("click", gamebutton_6_onclick, true);
+    button_create('7', 60, 30, 600, 360, 1, null, '關電扇', 12, 999, true);
+    async function gamebutton_7_onclick(event) {
+        canvas_arc('8', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_7").addEventListener("click", gamebutton_7_onclick, true);
+    button_create('8', 60, 30, 540, 360, 1, null, '開電扇', 12, 999, true);
+    async function gamebutton_8_onclick(event) {
+        canvas_arc('8', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_8").addEventListener("click", gamebutton_8_onclick, true);
+    button_create('9', 60, 30, 310, 360, 1, null, '開電扇', 12, 999, true);
+    async function gamebutton_9_onclick(event) {
+        canvas_arc('5', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_9").addEventListener("click", gamebutton_9_onclick, true);
+    button_create('10', 60, 30, 370, 360, 1, null, '關電扇', 12, 999, true);
+    async function gamebutton_10_onclick(event) {
+        canvas_arc('5', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_10").addEventListener("click", gamebutton_10_onclick, true);
+    button_create('11', 60, 30, 80, 360, 1, null, '開電扇', 12, 999, true);
+    async function gamebutton_11_onclick(event) {
+        canvas_arc('2', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+        mqtt_client.publish('cpps/666', String('openfan1'));
+    };
+    document.getElementById("gamebutton_11").addEventListener("click", gamebutton_11_onclick, true);
+    button_create('12', 60, 30, 140, 360, 1, null, '關電扇', 12, 999, true);
+    async function gamebutton_12_onclick(event) {
+        canvas_arc('2', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+        mqtt_client.publish('cpps/666', String('closefan1'));
+    };
+    document.getElementById("gamebutton_12").addEventListener("click", gamebutton_12_onclick, true);
+    button_create('13', 60, 30, 80, 404, 1, null, '開冷氣', 12, 999, true);
+    async function gamebutton_13_onclick(event) {
+        canvas_arc('1', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+        mqtt_client.publish('cpps/666', String('opencoldair'));
+    };
+    document.getElementById("gamebutton_13").addEventListener("click", gamebutton_13_onclick, true);
+    button_create('14', 60, 30, 140, 404, 1, null, '關冷氣', 12, 999, true);
+    async function gamebutton_14_onclick(event) {
+        canvas_arc('1', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+        mqtt_client.publish('cpps/666', String('closecoldair'));
+    };
+    document.getElementById("gamebutton_14").addEventListener("click", gamebutton_14_onclick, true);
+    button_create('15', 60, 30, 310, 404, 1, null, '開冷氣', 12, 999, true);
+    async function gamebutton_15_onclick(event) {
+        canvas_arc('6', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_15").addEventListener("click", gamebutton_15_onclick, true);
+    button_create('16', 60, 30, 370, 404, 1, null, '關冷氣', 12, 999, true);
+    async function gamebutton_16_onclick(event) {
+        canvas_arc('6', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_16").addEventListener("click", gamebutton_16_onclick, true);
+    button_create('17', 60, 30, 540, 404, 1, null, '開冷氣', 12, 999, true);
+    async function gamebutton_17_onclick(event) {
+        canvas_arc('7', 1, 21, 100, 20, 0, 6.284, true, true, '#ffcc33', 0, 1);
+    };
+    document.getElementById("gamebutton_17").addEventListener("click", gamebutton_17_onclick, true);
+    button_create('18', 60, 30, 600, 404, 1, null, '關冷氣', 12, 999, true);
+    async function gamebutton_18_onclick(event) {
+        canvas_arc('7', 1, 21, 100, 20, 0, 6.284, true, true, '#000000', 0, 1);
+    };
+    document.getElementById("gamebutton_18").addEventListener("click", gamebutton_18_onclick, true);
+};
+main();
+</script>
+</body></html>
