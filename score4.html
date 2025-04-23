@@ -1,0 +1,211 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    var score, number, number_ok;
+
+    // 描述此函式...
+    function score2() {
+        score = [];
+        button_create('score_1', 60, 30, 0, 300, 1, (HextoRgb('#ff9900')), '1', 25, 999, true);
+        async function gamebutton_score_1_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_1', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_1").addEventListener("click", gamebutton_score_1_onclick, true);
+        button_create('score_2', 60, 30, 61, 300, 1, (HextoRgb('#ff9900')), '2', 25, 999, true);
+        async function gamebutton_score_2_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_2', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_2").addEventListener("click", gamebutton_score_2_onclick, true);
+        button_create('score_3', 60, 30, 122, 300, 1, (HextoRgb('#ff9900')), '3', 25, 999, true);
+        async function gamebutton_score_3_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_3', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_3").addEventListener("click", gamebutton_score_3_onclick, true);
+        button_create('score_4', 60, 30, 183, 300, 1, (HextoRgb('#ff9900')), '4', 25, 999, true);
+        async function gamebutton_score_4_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_4', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_4").addEventListener("click", gamebutton_score_4_onclick, true);
+        button_create('score_5', 60, 30, 244, 300, 1, (HextoRgb('#ff9900')), '5', 25, 999, true);
+        async function gamebutton_score_5_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_5', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_5").addEventListener("click", gamebutton_score_5_onclick, true);
+        button_create('score_6', 60, 30, 305, 300, 1, (HextoRgb('#ff9900')), '6', 25, 999, true);
+        async function gamebutton_score_6_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_6', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_6").addEventListener("click", gamebutton_score_6_onclick, true);
+        button_create('score_7', 60, 30, 366, 300, 1, (HextoRgb('#ff9900')), '7', 25, 999, true);
+        async function gamebutton_score_7_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_7', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_7").addEventListener("click", gamebutton_score_7_onclick, true);
+        button_create('score_8', 60, 30, 427, 300, 1, (HextoRgb('#ff9900')), '8', 25, 999, true);
+        async function gamebutton_score_8_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_8', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_8").addEventListener("click", gamebutton_score_8_onclick, true);
+        button_create('score_9', 60, 30, 488, 300, 1, (HextoRgb('#ff9900')), '9', 25, 999, true);
+        async function gamebutton_score_9_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_9', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_9").addEventListener("click", gamebutton_score_9_onclick, true);
+        button_create('score_10', 60, 30, 549, 300, 1, (HextoRgb('#ff9900')), '10', 25, 999, true);
+        async function gamebutton_score_10_onclick(event) {
+            number_create('score_ok', 118, 380, 100, 50, 30, 100, 0, 1, (button_get('score_10', "value")), 1, 999, true);
+        };
+        document.getElementById("gamebutton_score_10").addEventListener("click", gamebutton_score_10_onclick, true);
+    }
+
+    // 描述此函式...
+    function number2() {
+        number = [];
+        button_create('1', 60, 30, 0, 100, 1, (HextoRgb('#33ff33')), '1', 25, 999, true);
+        async function gamebutton_1_onclick(event) {
+            number.push(1);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+        button_create('2', 60, 30, 61, 100, 1, (HextoRgb('#33ff33')), '2', 25, 999, true);
+        async function gamebutton_2_onclick(event) {
+            number.push(2);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+        button_create('3', 60, 30, 122, 100, 1, (HextoRgb('#33ff33')), '3', 25, 999, true);
+        async function gamebutton_3_onclick(event) {
+            number.push(3);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
+        button_create('4', 60, 30, 183, 100, 1, (HextoRgb('#33ff33')), '4', 25, 999, true);
+        async function gamebutton_4_onclick(event) {
+            number.push(4);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_4").addEventListener("click", gamebutton_4_onclick, true);
+        button_create('5', 60, 30, 244, 100, 1, (HextoRgb('#33ff33')), '5', 25, 999, true);
+        async function gamebutton_5_onclick(event) {
+            number.push(5);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_5").addEventListener("click", gamebutton_5_onclick, true);
+        button_create('6', 60, 30, 305, 100, 1, (HextoRgb('#33ff33')), '6', 25, 999, true);
+        async function gamebutton_6_onclick(event) {
+            number.push(6);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_6").addEventListener("click", gamebutton_6_onclick, true);
+        button_create('7', 60, 30, 366, 100, 1, (HextoRgb('#33ff33')), '7', 25, 999, true);
+        async function gamebutton_7_onclick(event) {
+            number.push(7);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_7").addEventListener("click", gamebutton_7_onclick, true);
+        button_create('8', 60, 30, 427, 100, 1, (HextoRgb('#33ff33')), '8', 25, 999, true);
+        async function gamebutton_8_onclick(event) {
+            number.push(8);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_8").addEventListener("click", gamebutton_8_onclick, true);
+        button_create('9', 60, 30, 488, 100, 1, (HextoRgb('#33ff33')), '9', 25, 999, true);
+        async function gamebutton_9_onclick(event) {
+            number.push(9);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_9").addEventListener("click", gamebutton_9_onclick, true);
+        button_create('0', 60, 30, 549, 100, 1, (HextoRgb('#33ff33')), '0', 25, 999, true);
+        async function gamebutton_0_onclick(event) {
+            number.push(0);
+            text_create('number', 100, 30, 0, 140, '#ffffff', '#000000', 25, 1, number, 999, true);
+            number_create('123', 0, 50, 100, 30, 12, 100, 0, 1, (number.length), 1, 999, false);
+            number_ok = number[0] * 100 + number[1] * 10 + number[2] * 1;
+            number_create('ok', 118, 180, 100, 50, 30, 999, 0, 1, number_ok, 1, 999, true);
+        };
+        document.getElementById("gamebutton_0").addEventListener("click", gamebutton_0_onclick, true);
+    }
+
+    // 描述此函式...
+    function original() {
+        const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+        const options = {
+            username: '',
+            password: '',
+            keepalive: 60,
+            clientId: clientId,
+            protocolId: "MQTT",
+            protocolVersion: 4,
+            clean: true,
+            reconnectPeriod: 1000,
+            connectTimeout: 30 * 1000
+        }
+
+        var mqtt_client = mqtt.connect('wss://broker.mqttgo.io:8084/mqtt', options);
+        mqtt_client.on("connect", () => {
+            console.log("connected");
+            mqtt_client.subscribe('cpps/score4');
+            mqtt_client.on("message", async function(topic, payload) {
+                if (topic == 'cpps/score4') {}
+            })
+        })
+
+        span_create('1', 0, 0, 14, (fontText(7, '#ff0000', '標楷體', '青埔國小美姿美儀評分系統(評審四)')), 999);
+        span_create('2', 0, 180, 14, (fontText(7, '#3366ff', '標楷體', '編號:')), 999);
+        span_create('3', 0, 380, 14, (fontText(7, '#3366ff', '標楷體', '得分:')), 999);
+        button_create('sent', 100, 50, 0, 450, 1, null, '送出', 30, 999, true);
+        async function gamebutton_sent_onclick(event) {
+            spreadsheet_insert("insertlast", String(number_get('ok', "value")) + "|" + String(number_get('score_ok', "value")), 0, 0, "", 'https://docs.google.com/spreadsheets/d/1rXZVAKRiQY44wfctMsquE7heT4fKQIBcBcVd07jp59w/edit?usp=sharing', 'score4', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
+            mqtt_client.publish('cpps/score4', String((number_get('score_ok', "value"))));
+        };
+        document.getElementById("gamebutton_sent").addEventListener("click", gamebutton_sent_onclick, true);
+        button_create('reset', 100, 50, 150, 450, 1, null, '清除', 30, 999, true);
+        async function gamebutton_reset_onclick(event) {
+            number_delete('score_ok');
+            number_delete('ok');
+            score = [];
+            number = [];
+        };
+        document.getElementById("gamebutton_reset").addEventListener("click", gamebutton_reset_onclick, true);
+    }
+
+
+    score2();
+    original();
+    number2();
+};
+main();
+</script>
+</body></html>
