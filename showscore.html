@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    var count, number;
+
+    function mqttBinarytobase64(input_array) {
+        const content = new Uint8Array(input_array);
+        return btoa(String.fromCharCode.apply(null, content));
+    }
+
+
+
+    count = 0;
+    number = 0;
+    div_create('score1', 150, 75, 0, 200, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '分數1:', 999, true);
+    div_create('score2', 150, 75, 270, 200, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '分數2:', 999, true);
+    div_create('score3', 150, 75, 560, 200, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '分數3:', 999, true);
+    div_create('score4', 150, 75, 770, 200, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '分數4:', 999, true);
+    div_create('score5', 150, 75, 1020, 200, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '分數5:', 999, true);
+    div_create('sum', 150, 75, 0, 300, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, '總分:', 999, true);
+    span_create('0', 500, 30, 14, (fontText(7, '#ff0000', '標楷體', '青埔國小美姿美儀競賽成績')), 999);
+    span_create('num', 0, 110, 50, '編號 :', 999);
+    const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+    const options = {
+        username: '',
+        password: '',
+        keepalive: 60,
+        clientId: clientId,
+        protocolId: "MQTT",
+        protocolVersion: 4,
+        clean: true,
+        reconnectPeriod: 1000,
+        connectTimeout: 30 * 1000
+    }
+
+    var mqtt_client = mqtt.connect('wss://broker.mqttgo.io:8084/mqtt', options);
+    mqtt_client.on("connect", () => {
+        console.log("connected");
+        mqtt_client.subscribe('cpps/score1');
+        mqtt_client.subscribe('cpps/score2');
+        mqtt_client.subscribe('cpps/score3');
+        mqtt_client.subscribe('cpps/score4');
+        mqtt_client.subscribe('cpps/score5');
+        mqtt_client.on("message", async function(topic, payload) {
+            if (topic == 'cpps/score1') {
+                number_create('1', 160, 210, 90, 50, 50, 100, 0, 1, (Number(payload)), 1, 999, true);
+                number_create('6', 180, 320, 120, 50, 50, 500, 0, 1, ((text_to_number((number_get('1', "value")))) + (text_to_number((number_get('2', "value")))) + (text_to_number((number_get('3', "value")))) + (text_to_number((number_get('4', "value")))) + (text_to_number((number_get('5', "value"))))), 1, 999, true);
+            }
+            if (topic == 'cpps/score2') {
+                number_create('2', 430, 210, 90, 50, 50, 100, 0, 1, (Number(payload)), 1, 999, true);
+                number_create('6', 180, 320, 120, 50, 50, 500, 0, 1, ((text_to_number((number_get('1', "value")))) + (text_to_number((number_get('2', "value")))) + (text_to_number((number_get('3', "value")))) + (text_to_number((number_get('4', "value")))) + (text_to_number((number_get('5', "value"))))), 1, 999, true);
+            }
+            if (topic == 'cpps/score3') {
+                number_create('3', 700, 210, 90, 50, 50, 100, 0, 1, (Number(payload)), 1, 999, true);
+                number_create('6', 180, 320, 120, 50, 50, 500, 0, 1, ((text_to_number((number_get('1', "value")))) + (text_to_number((number_get('2', "value")))) + (text_to_number((number_get('3', "value")))) + (text_to_number((number_get('4', "value")))) + (text_to_number((number_get('5', "value"))))), 1, 999, true);
+            }
+            if (topic == 'cpps/score4') {
+                number_create('4', 930, 210, 90, 50, 50, 100, 0, 1, (Number(payload)), 1, 999, true);
+                number_create('6', 180, 320, 120, 50, 50, 500, 0, 1, ((text_to_number((number_get('1', "value")))) + (text_to_number((number_get('2', "value")))) + (text_to_number((number_get('3', "value")))) + (text_to_number((number_get('4', "value")))) + (text_to_number((number_get('5', "value"))))), 1, 999, true);
+            }
+            if (topic == 'cpps/score5') {
+                number_create('5', 1180, 210, 90, 50, 50, 100, 0, 1, (Number(payload)), 1, 999, true);
+                number_create('6', 180, 320, 120, 50, 50, 500, 0, 1, ((text_to_number((number_get('1', "value")))) + (text_to_number((number_get('2', "value")))) + (text_to_number((number_get('3', "value")))) + (text_to_number((number_get('4', "value")))) + (text_to_number((number_get('5', "value"))))), 1, 999, true);
+            }
+        })
+    })
+
+    number = 0;
+    button_create('reset', 60, 30, 0, 420, 1, null, 'NEXT', 12, 999, true);
+    async function gamebutton_reset_onclick(event) {
+        number_delete('1');
+        number_delete('2');
+        number_delete('3');
+        number_delete('4');
+        number_delete('5');
+        number_delete('6');
+        number = (typeof number === 'number' ? number : 0) + 1;
+        div_create('nubmer', 150, 75, 130, 110, "solid", 3, '#cc0000', '#ffffff', '#3333ff', 50, 1, number, 999, true);
+    };
+    document.getElementById("gamebutton_reset").addEventListener("click", gamebutton_reset_onclick, true);
+};
+main();
+</script>
+</body></html>
