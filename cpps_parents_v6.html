@@ -381,7 +381,7 @@
         // 真正連接 Google Sheets 的函數
         async function saveToGoogleSheets(data) {
             // 檢查是否已設定 Google Script URL
-            if (GOOGLE_SCRIPT_URL === '請在此輸入您的Google Apps Script URL') {
+            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxMcR7bedbFd4h8GaKY8PAIJcZTiGyo4kmNLzz14kNNd1rkHGchGnCDY0amR_IhcP2GPg/exec') {
                 showMessage('⚠️ 請先設定 Google Apps Script URL', 'error');
                 console.log('請在程式碼中設定 GOOGLE_SCRIPT_URL');
                 return;
@@ -479,7 +479,7 @@
             showMessage('ℹ️ 由於瀏覽器安全限制，無法直接載入資料。請手動檢查 Google Sheets。', 'success');
             
             // 提供 Google Sheets 連結提示
-            if (GOOGLE_SCRIPT_URL !== '請在此輸入您的Google Apps Script URL') {
+            if (GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbxMcR7bedbFd4h8GaKY8PAIJcZTiGyo4kmNLzz14kNNd1rkHGchGnCDY0amR_IhcP2GPg/exec') {
                 const sheetId = prompt('如果您想直接開啟 Google Sheets，請輸入試算表 ID：');
                 if (sheetId) {
                     const sheetUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/edit`;
@@ -491,7 +491,7 @@
 
         // 測試連線的函數
         async function testConnection() {
-            if (GOOGLE_SCRIPT_URL === '請在此輸入您的Google Apps Script URL') {
+            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxMcR7bedbFd4h8GaKY8PAIJcZTiGyo4kmNLzz14kNNd1rkHGchGnCDY0amR_IhcP2GPg/exec') {
                 showMessage('⚠️ 請先在程式碼中設定 Google Apps Script URL', 'error');
                 return;
             }
@@ -526,4 +526,5 @@
         });
     </script>
 </body>
+
 </html>
